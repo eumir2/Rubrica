@@ -1,32 +1,23 @@
 package business;
 import dto.Persona;
+import repository.RWOperations;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Rubrica {
     private ArrayList<Persona> rubrica;
+    private RWOperations dr = new RWOperations();
+
 
     public Rubrica(){
         rubrica = new ArrayList<>();
-        //lettura da file
-        try {
-            List<String> lines = Files.readAllLines(Paths.get("informazioni.txt"));
-            for(String line : lines){
-                Persona t = formatString(line);
-                //agguingo se i dati sono sufficienti
-                if(t != null){
-                    rubrica.add(t);
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        load();
+
+
     }
 
+    //estrazione dei dati dalla stringa
     private Persona formatString(String data){
         Persona tmp = new Persona();
         String[] d = data.split(";");
@@ -42,6 +33,22 @@ public class Rubrica {
         return tmp;
     }
 
+    //carica i dati nella rubrica
+    private void load(){
+        //lettura da file
+        List<String> lines = dr.getData();
+
+        //riempio la rubrica
+        for(String line : lines){
+            Persona t = formatString(line);
+            //agguingo se i dati sono sufficienti
+            if(t != null){
+                rubrica.add(t);
+            }
+        }
+    }
+
+    //toString
     public String toString(){
         String s = new String();
         for(Persona p : rubrica){
