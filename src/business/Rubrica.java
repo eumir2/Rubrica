@@ -1,19 +1,22 @@
 package business;
 import dto.Persona;
+import gui.FinestraPrincipale;
 import repository.RWOperations;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class Rubrica {
-    private ArrayList<Persona> rubrica;
+    private Vector<Persona> rubrica;
     private RWOperations dr = new RWOperations();
+    private FinestraPrincipale fp;
 
 
     public Rubrica(){
-        rubrica = new ArrayList<>();
+        rubrica = new Vector<>();
+        fp = new FinestraPrincipale();
         load();
-
+        fp.fill(rubrica);
 
     }
 
