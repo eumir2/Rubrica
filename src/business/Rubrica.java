@@ -1,6 +1,7 @@
 package business;
 import dto.Persona;
 import gui.FinestraPrincipale;
+import gui.NuovoUtente;
 import repository.RWOperations;
 
 import java.util.List;

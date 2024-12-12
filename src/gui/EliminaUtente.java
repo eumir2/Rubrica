@@ -1,5 +1,7 @@
 package gui;
 
+import dto.Persona;
+
 import javax.swing.*;
 
 public class EliminaUtente extends SecondLevelFrame{

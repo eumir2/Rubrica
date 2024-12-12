@@ -1,5 +1,6 @@
 package gui;
 
+import business.Rubrica;
 import dto.Persona;
 
 import javax.swing.*;
@@ -36,6 +37,8 @@ public class FinestraPrincipale {
 
     public void fill(Vector<Persona> rubrica) {
         table = new JTable();
+        //rendo la tabella non editabile
+        table.setDefaultEditor(Object.class, null);
 
         model = new DefaultTableModel();
         model.addColumn("Nome");
@@ -65,6 +68,8 @@ public class FinestraPrincipale {
         JButton b2 = new JButton("ELIMINA");
         JButton b3 = new JButton("MODIFICA");
 
+
+        //bottone NUOVO
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -72,17 +77,49 @@ public class FinestraPrincipale {
             }
         });
 
+        //bottone ELIMINA
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                eu = new EliminaUtente();
+                int row = table.getSelectedRow();
+
+                if(row != -1){
+                    Persona tmp = new Persona();
+                    tmp.setNome(table.getValueAt(row,0).toString());
+                    tmp.setCognome(table.getValueAt(row,1).toString());
+                    tmp.setTelefono(table.getValueAt(row,2).toString());
+
+                    int option = JOptionPane.showConfirmDialog(frame, "Eliminare la persona " + tmp.getNome() + " " + tmp.getCognome());
+                    if(option == JOptionPane.YES_OPTION){
+                        //TODO
+                        //codice per eliminare
+                    }
+
+                }else{
+                    JOptionPane.showMessageDialog(frame, "Nessun utente selezionato");
+                }
             }
         });
 
+
+        //bottone MODIFICA
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mu = new ModificaUtente();
+                int row = table.getSelectedRow();
+
+                if(row != -1){
+                    Persona tmp = new Persona();
+                    tmp.setNome(table.getValueAt(row,0).toString());
+                    tmp.setCognome(table.getValueAt(row,1).toString());
+                    tmp.setTelefono(table.getValueAt(row,2).toString());
+
+                    //TODO
+                    //caricare dati da rubrica => tocca
+
+                }else{
+                    JOptionPane.showMessageDialog(frame, "Nessun utente selezionato");
+                }
             }
         });
 
