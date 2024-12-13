@@ -1,22 +1,35 @@
 package gui;
 
+import business.Rubrica;
+import dto.Persona;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public class SecondLevelFrame {
     public JFrame frame;
-    private JPanel panel;
+    private JPanel dataPanel;
+    public JPanel buttonPanel;
+    public JButton salva = new JButton("SALVA");
+    public JButton annulla = new JButton("ANNULLA");
     private Vector<JLabel> labels;
-    private Vector<JTextField> fields;
+    public Vector<JTextField> fields;
+    public Rubrica rubrica;
 
 
-    public SecondLevelFrame(){
+
+    public SecondLevelFrame(Rubrica r){
         frame = new JFrame();
         frame.setSize(500,400);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
 
-        //inizializzo i lable
+        rubrica = r;
+
+        //inizializzo i label
         labels = new Vector<>();
         labels.add(new JLabel("Nome"));
         labels.add(new JLabel("Cognome"));
@@ -38,15 +51,28 @@ public class SecondLevelFrame {
         fields.add(telefono);
         fields.add(eta);
 
-        panel = new JPanel();
-        panel.setLayout(new GridLayout(5,2));
+        dataPanel = new JPanel();
+        dataPanel.setLayout(new GridLayout(5,2));
 
         for(int i = 0; i < labels.size(); i++){
-            panel.add(labels.get(i));
-            panel.add(fields.get(i));
+            dataPanel.add(labels.get(i));
+            dataPanel.add(fields.get(i));
         }
 
-        frame.add(panel);
+        buttonPanel = new JPanel();
+
+
+        annulla.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+
+        buttonPanel.add(annulla);
+        buttonPanel.add(salva);
+        frame.add(dataPanel, BorderLayout.CENTER);
+        frame.add(buttonPanel, BorderLayout.SOUTH);
 
 
 

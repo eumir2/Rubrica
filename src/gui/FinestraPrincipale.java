@@ -75,7 +75,7 @@ public class FinestraPrincipale {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                nu = new NuovoUtente();
+                nu = new NuovoUtente(rubrica);
             }
         });
 
@@ -118,7 +118,7 @@ public class FinestraPrincipale {
                     //TODO
                     //caricare dati da rubrica => tocca
 
-                    mu = new ModificaUtente();
+                    mu = new ModificaUtente(rubrica, tmp);
 
                 }else{
                     JOptionPane.showMessageDialog(frame, "Nessun utente selezionato");

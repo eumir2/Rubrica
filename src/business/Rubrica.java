@@ -60,6 +60,17 @@ public class Rubrica {
         return s;
     }
 
+    //ricercaUtente
+    public Persona findUser(Persona p){
+        for(int i = 0; i < rubrica.size(); i++){
+            if(rubrica.get(i).equals(p)){
+                return rubrica.get(i);
+
+            }
+        }
+        return null;
+    }
+
     //eliminare un utente
     public void delUtente(Persona p){
         //rimozione dell'utente dalla rubrica
@@ -69,9 +80,34 @@ public class Rubrica {
                 break;
             }
         }
+        update(rubrica);
+    }
 
+    //modifica utente
+    public void updateUser(Persona p){
+        for(int i = 0; i < rubrica.size(); i++){
+            if(rubrica.get(i).equals(p)){
+                rubrica.remove(i);
+                rubrica.addFirst(p);
+                break;
+            }
+        }
+
+        update(rubrica);
+    }
+
+    //aggiungta utente
+    public void addUser(Persona p){
+        rubrica.addFirst(p);
+
+        update(rubrica);
+    }
+
+    private void update(Vector<Persona> rubrica){
         //aggiornamento del file
         dr.writeFile(rubrica);
+
+        //aggiornamento tabella
         fp.updateTabella(rubrica);
     }
 
