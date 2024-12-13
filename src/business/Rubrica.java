@@ -1,7 +1,6 @@
 package business;
 import dto.Persona;
 import gui.FinestraPrincipale;
-import gui.NuovoUtente;
 import repository.RWOperations;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public class Rubrica {
 
     public Rubrica(){
         rubrica = new Vector<>();
-        fp = new FinestraPrincipale();
+        fp = new FinestraPrincipale(this);
         load();
         fp.fill(rubrica);
 
@@ -59,6 +58,21 @@ public class Rubrica {
             s += p.toString();
         }
         return s;
+    }
+
+    //eliminare un utente
+    public void delUtente(Persona p){
+        //rimozione dell'utente dalla rubrica
+        for(int i = 0; i < rubrica.size(); i++){
+            if(rubrica.get(i).equals(p)){
+                rubrica.remove(i);
+                break;
+            }
+        }
+
+        //aggiornamento del file
+        dr.writeFile(rubrica);
+        fp.updateTabella(rubrica);
     }
 
 }

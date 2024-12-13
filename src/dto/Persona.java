@@ -73,5 +73,12 @@ public class Persona {
         return this.nome+";"+this.cognome+";"+this.indirizzo+";"+this.telefono+";"+this.eta+"\n";
     }
 
+    public boolean equals(Persona p){
+        if(this.nome.equals(p.getNome()) && this.cognome.equals(p.getCognome()) && this.telefono.equals(p.getTelefono())){
+            return true;
+        }
+        return false;
+    }
+
 
 }

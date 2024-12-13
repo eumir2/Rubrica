@@ -10,7 +10,6 @@ public class NuovoUtente extends SecondLevelFrame{
         super();
 
         super.frame.setTitle("Nuovo utente");
-        super.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         super.frame.setVisible(true);
     }
 }

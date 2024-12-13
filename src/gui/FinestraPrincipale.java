@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public class FinestraPrincipale {
+    private Rubrica rubrica;
     private JFrame frame;
     private JPanel tablePanel;
     private JPanel buttonPanel;
@@ -19,10 +20,10 @@ public class FinestraPrincipale {
 
     //finestre delle altre schermate
     private NuovoUtente nu;
-    private EliminaUtente eu;
     private ModificaUtente mu;
 
-    public FinestraPrincipale() {
+    public FinestraPrincipale(Rubrica r) {
+        this.rubrica = r;
         frame = new JFrame();
         frame.setLayout(new BorderLayout());
         tablePanel = new JPanel();
@@ -39,6 +40,7 @@ public class FinestraPrincipale {
         table = new JTable();
         //rendo la tabella non editabile
         table.setDefaultEditor(Object.class, null);
+        table.getTableHeader().setReorderingAllowed(false);
 
         model = new DefaultTableModel();
         model.addColumn("Nome");
@@ -91,8 +93,7 @@ public class FinestraPrincipale {
 
                     int option = JOptionPane.showConfirmDialog(frame, "Eliminare la persona " + tmp.getNome() + " " + tmp.getCognome());
                     if(option == JOptionPane.YES_OPTION){
-                        //TODO
-                        //codice per eliminare
+                        rubrica.delUtente(tmp);
                     }
 
                 }else{
@@ -117,6 +118,8 @@ public class FinestraPrincipale {
                     //TODO
                     //caricare dati da rubrica => tocca
 
+                    mu = new ModificaUtente();
+
                 }else{
                     JOptionPane.showMessageDialog(frame, "Nessun utente selezionato");
                 }
@@ -127,4 +130,6 @@ public class FinestraPrincipale {
         buttonPanel.add(b2, BorderLayout.SOUTH);
         buttonPanel.add(b3, BorderLayout.SOUTH);
     }
+
+
 }
