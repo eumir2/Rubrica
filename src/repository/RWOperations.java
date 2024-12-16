@@ -3,27 +3,35 @@ package repository;
 import business.Rubrica;
 import dto.Persona;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 public class RWOperations {
-    private String file;
+    private File file;
 
     public RWOperations(){
-        this.file = "informazioni.txt";
+        this.file = new File(String.valueOf(Paths.get("informazioni.txt")));
     }
 
     //lettura da file
     public List<String> getData(){
         //lettura da file
         try {
-            List<String> lines = Files.readAllLines(Paths.get(this.file));
-            return lines;
+            Scanner sc = new Scanner(this.file);
+            String s = "";
+            while(sc.hasNextLine()){
+                s += sc.nextLine();
+                s+="\n";
+            }
+            sc.close();
+
+            String[] lines  = s.split("\n");
+            return Arrays.asList(lines);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -33,7 +41,7 @@ public class RWOperations {
     //eliminazione del file
     private void delFile(){
         try {
-            FileWriter f = new FileWriter(String.valueOf(Paths.get(this.file)),false);
+            FileWriter f = new FileWriter(file.getPath(),false);
             f.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -52,10 +60,12 @@ public class RWOperations {
 
         //scrittua su file
         try {
-            Files.write(Paths.get(this.file), s.getBytes());
+            PrintStream ps = new PrintStream(this.file);
+            ps.print(s);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
     }
+
 }

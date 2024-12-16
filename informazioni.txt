@@ -8,7 +8,6 @@ Sundar;Pichai;via Innovazione 20;06999999;51
 Satya;Nadella;via Cloud 7;06888888;56
 Jack;Dorsey;via Social 280;06765432;47
 Reed;Hastings;via Netflix 23;06543210;63
-Steve;Wozniak;via Silicon Valley 3;0612345;73
 Marissa;Mayer;via Innovazione 15;0623456;49
 Ginni;Rometty;via Watson 9;0611112;67
 Meg;Whitman;via eBay 12;0643210;67
