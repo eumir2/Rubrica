@@ -32,8 +32,6 @@ public class FinestraPrincipale {
         frame.setSize(700, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Rubrica");
-        frame.setVisible(true);
-
     }
 
     public void fill(Vector<Persona> rubrica) {
@@ -53,6 +51,7 @@ public class FinestraPrincipale {
         addButtons();
         frame.add(tablePanel, BorderLayout.CENTER);
         frame.add(buttonPanel, BorderLayout.SOUTH);
+        frame.setVisible(true);
     }
 
     public void updateTabella(Vector<Persona> rubrica) {

@@ -34,7 +34,7 @@ public class RWOperations {
             return Arrays.asList(lines);
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return null;
         }
     }
 

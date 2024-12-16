@@ -41,12 +41,14 @@ public class Rubrica {
         //lettura da file
         List<String> lines = dr.getData();
 
-        //riempio la rubrica
-        for(String line : lines){
-            Persona t = formatString(line);
-            //agguingo se i dati sono sufficienti
-            if(t != null){
-                rubrica.add(t);
+        if(lines != null){
+            //riempio la rubrica
+            for(String line : lines){
+                Persona t = formatString(line);
+                //agguingo se i dati sono sufficienti
+                if(t != null){
+                    rubrica.add(t);
+                }
             }
         }
     }
@@ -84,11 +86,11 @@ public class Rubrica {
     }
 
     //modifica utente
-    public void updateUser(Persona p){
+    public void updateUser(Persona newUser, Persona oldUser){
         for(int i = 0; i < rubrica.size(); i++){
-            if(rubrica.get(i).equals(p)){
-                rubrica.remove(i);
-                rubrica.addFirst(p);
+            if(rubrica.get(i).equals(oldUser)){
+                //inserimento rimpiazzando il vecchio utente
+                rubrica.set(i, newUser);
                 break;
             }
         }
